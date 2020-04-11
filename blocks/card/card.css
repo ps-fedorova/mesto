@@ -1,0 +1,11 @@
+@import url(./__image/card__image.css);
+@import url(./__description/card__description.css);
+@import url(./__name/card__name.css);
+@import url(./__button-like/card__button-like.css);
+.card {
+    min-width: 280px;
+    height: 100%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}

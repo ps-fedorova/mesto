@@ -1,0 +1,18 @@
+.profile__user-info-about {
+    display: block;
+    font-size: 18px;
+    margin: 0;
+    margin-top: 14px;
+}
+
+@media screen and (max-width: 700px) {
+    .profile__user-info-about {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .profile__user-info-about {
+        font-size: 14px;
+    }
+}

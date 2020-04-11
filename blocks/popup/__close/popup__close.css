@@ -1,0 +1,11 @@
+.popup__close {
+    position: absolute;
+    top: -46px;
+    right: -46px;
+    cursor: pointer;
+}
+
+.popup__close:hover {
+    opacity: .6;
+    transition: 350ms;
+}

@@ -1,0 +1,20 @@
+.profile__name-edit-position {
+    min-width: calc(295px + 17px + 24px);
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 700px) {
+    .profile__name-edit-position {
+        min-width: 0;
+        max-width: calc(295px + 17px + 24px);
+        margin: auto;
+        margin-top: 28px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .profile__name-edit-position {
+        max-width: 220px;
+    }
+}

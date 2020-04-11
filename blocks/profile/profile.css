@@ -1,0 +1,24 @@
+@import url(./__position/profile__position.css);
+@import url(./__avatar/profile__avatar.css);
+@import url(./__avatar-jacques-yves-cousteau/profile__avatar-jacques-yves-cousteau.css);
+@import url(./__user-info/profile__user-info.css);
+@import url(./__name-edit-position/profile__name-edit-position.css);
+@import url(./__user-info-name/profile__user-info-name.css);
+@import url(./__user-info-about/profile__user-info-about.css);
+@import url(./__button-add-vector/profile__button-add-vector.css);
+@import url(./__button-add/profile__button-add.css);
+@import url(./__button-edit-vector/profile__button-edit-vector.css);
+@import url(./__button-edit/profile__button-edit.css);
+.profile {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+@media screen and (max-width: 700px) {
+    .profile {
+        display: block;
+        width: 100%;
+        padding-top: 42px;
+    }
+}

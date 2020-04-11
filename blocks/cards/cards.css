@@ -1,0 +1,26 @@
+.cards {
+    padding-top: 48px;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, 280px);
+    grid-row-gap: 20px;
+    grid-column-gap: 18px;
+}
+
+@media screen and (max-width: 919px) {
+    .cards {
+        grid-template-columns: repeat(2, 2fr)
+    }
+}
+
+@media screen and (max-width: 619px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .cards {
+        padding-top: 36px;
+    }
+}
