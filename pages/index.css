@@ -1,10 +1,14 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/inter.css);
 @import url(../blocks/page/page.css);
-@import url(../blocks/list-style/list-style.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/popup/popup.css);
+
+/** {
+    border: .3px solid rgb(0, 255, 200);
+}
+*/

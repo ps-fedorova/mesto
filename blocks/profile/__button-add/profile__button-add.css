@@ -8,7 +8,8 @@
     border: 1px solid #fff;
     padding: 0px;
     cursor: pointer;
-    outline: none; /*сброс обводки "по умолчанию"*/
+    outline: none;
+    /*сброс обводки "по умолчанию"*/
 }
 
 .profile__button-add:hover {
@@ -16,7 +17,7 @@
     transition: 350ms;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     .profile__button-add {
         width: 100%;
         margin-top: 33px;

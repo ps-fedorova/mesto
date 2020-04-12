@@ -1,20 +1,26 @@
 .profile__name-edit-position {
-    min-width: calc(295px + 17px + 24px);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: max-content min-content;
 }
 
 @media screen and (max-width: 700px) {
     .profile__name-edit-position {
-        min-width: 0;
-        max-width: calc(295px + 17px + 24px);
+        grid-template-columns: fit-content(270px) min-content;
+        min-width: auto;
+        justify-content: center;
         margin: auto;
         margin-top: 28px;
     }
 }
 
+@media screen and (max-width: 450px) {
+    .profile__name-edit-position {
+        grid-template-columns: fit-content(230px) min-content;
+    }
+}
+
 @media screen and (max-width: 375px) {
     .profile__name-edit-position {
-        max-width: 220px;
+        grid-template-columns: fit-content(200px) min-content;
     }
 }

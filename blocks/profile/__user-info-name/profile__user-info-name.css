@@ -7,11 +7,21 @@
 @media screen and (max-width: 700px) {
     .profile__user-info-name {
         text-align: center;
+        font-size: 36px;
+        margin-right: 10px;
+        right: 0;
     }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 480px) {
+    .profile__user-info-name {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 380px) {
     .profile__user-info-name {
         font-size: 27px;
+        margin-right: 6px;
     }
 }

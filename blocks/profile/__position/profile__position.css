@@ -1,7 +1,12 @@
 .profile__position {
     display: flex;
     min-width: 518px;
-    ;
+}
+
+@media screen and (max-width: 900px) {
+    .profile__position {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 700px) {
