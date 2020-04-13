@@ -4,8 +4,8 @@ const popup = document.querySelector('.popup'); // объявили попап
 const profileButtonEdit = document.querySelector('.profile__button-edit'); // объявили кнопку "Редактировать профиль"
 
 function openPopup() { //открыть
-    popup.classList.add('popup_opened'); // добавили модификатор
-    popup.classList.remove('popup_closed'); // удалили модификатор
+  popup.classList.toggle('popup_opened'); // добавили модификатор
+  popup.classList.toggle('popup_closed'); // удалили модификатор
 }
 profileButtonEdit.addEventListener('click', openPopup); // Метод addEventListener() присоединяет обработчик события к определенному элементу
 
@@ -20,8 +20,8 @@ let name = document.querySelector('.profile__user-info-name');
 let job = document.querySelector('.profile__user-info-about');
 // 2.3 Форме ввода из попапа задаем значения "по умолчанию" со страницы
 function reset() {
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
 }
 reset();
 
@@ -31,20 +31,20 @@ reset();
 const popupClose = document.querySelector('.popup__close'); // объявили крестик
 
 function closePopup() { // закрыть крестиком
-    popup.classList.add('popup_closed');
-    popup.classList.remove('popup_opened');
-    reset();
+  popup.classList.toggle('popup_closed');
+  popup.classList.toggle('popup_opened');
+  reset();
 }
 popupClose.addEventListener('click', closePopup);
 
 //закрыть кликом по фону - разобраться как это сделать
 
 function closeEscPopup(evt) { // закрыть кнопкой Esc
-    if (evt.keyCode == 27) {
-        popup.classList.add('popup_closed');
-        popup.classList.remove('popup_opened');
-        reset();
-    }
+  if (evt.keyCode === 27) {
+    popup.classList.toggle('popup_closed');
+    popup.classList.toggle('popup_opened');
+    reset();
+  }
 }
 document.addEventListener('keydown', closeEscPopup);
 
@@ -52,14 +52,13 @@ document.addEventListener('keydown', closeEscPopup);
 // 4 Сохраненить изменения
 
 function formSubmitHandler(evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    // Так мы можем определить свою логику отправки.
-    // О том, как это делать, расскажем позже.
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  // Так мы можем определить свою логику отправки.
+  // О том, как это делать, расскажем позже.
 
-    name.textContent = nameInput.value
-    job.textContent = jobInput.value
-    closePopup();
-    closeEscPopup(evt);
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
+  closePopup();
 }
 
 

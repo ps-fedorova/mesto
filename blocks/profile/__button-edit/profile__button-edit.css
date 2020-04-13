@@ -1,5 +1,4 @@
 .profile__button-edit {
-    background: none;
     width: 24px;
     height: 24px;
     border: 1px solid #fff;
@@ -7,8 +6,6 @@
     font-size: 0;
     padding: 0;
     margin: auto 0 6px 20px;
-    cursor: pointer;
-    outline: none;
 }
 
 .profile__button-edit:hover {

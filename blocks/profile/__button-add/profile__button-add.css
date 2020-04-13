@@ -1,15 +1,11 @@
 .profile__button-add {
     margin: auto 0 auto auto;
-    background: none;
     min-width: 150px;
     height: 50px;
     box-sizing: border-box;
     font-size: 0;
     border: 1px solid #fff;
     padding: 0px;
-    cursor: pointer;
-    outline: none;
-    /*сброс обводки "по умолчанию"*/
 }
 
 .profile__button-add:hover {
