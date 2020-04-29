@@ -1,6 +1,9 @@
 .card__name {
+    display: flex;
     font-weight: 900;
     font-size: 24px;
     color: #000;
-    margin: 0;
+    margin: auto;
+    margin-left: 0;
+    max-width: 85%;
 }

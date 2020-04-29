@@ -1,4 +1,7 @@
 @import url(./__container/popup__container.css);
+@import url(./__zoom/popup__zoom.css);
+@import url(./__image/popup__image.css);
+@import url(./__card-name/popup__card-name.css);
 @import url(./__close/popup__close.css);
 @import url(./__title/popup__title.css);
 @import url(./__button/popup__button.css);
