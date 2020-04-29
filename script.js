@@ -42,9 +42,9 @@ for (let i = 0; i < initialCards.length; i++) {
 
 
 
-//КОНСТАНТЫ и попап
+//КОНСТАНТЫ
 
-let popup = document.querySelectorAll('.popup'); // объявили попап
+const popup = document.querySelectorAll('.popup'); // объявили попап
 const profileButtonEdit = document.querySelector('.profile__button-edit'); // кнопка "Редактировать профиль"
 const profileButtonAdd = document.querySelector('.profile__button-add'); // кнопка "Добавить карточку"
 const popupImage = document.querySelector('.popup__image'); // картинка
@@ -53,8 +53,8 @@ const popupEdit = document.querySelector('.popup__edit-profile'); // попап 
 const popupAddCard = document.querySelector('.popup__add-card'); // попап "Добавить карточку"
 const popupZoomCard = document.querySelector('.popup__zoom-card'); // попап "Картинка-зум"
 const popupClose = document.querySelector('.popup__close'); //  крестик
-
-
+const formCard = document.querySelector('.popup__form-card');
+const formElement = document.querySelector('.popup__form');
 
 // 1 Открыть попапы, поставить лайк, удалить карточку
 
@@ -149,8 +149,6 @@ reset();
 
 // 4 Сохраненить изменения
 
-let formElement = document.querySelector('.popup__form');
-
 function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы, чтобы страница не перезагружалась.
     profileName.textContent = nameInput.value;
@@ -163,8 +161,6 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 // 5 Добавить новую карточку
-
-let formCard = document.querySelector('.popup__form-card');
 
 function addNewCard(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы, чтобы страница не перезагружалась.
