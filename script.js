@@ -55,6 +55,11 @@ const popupZoomCard = document.querySelector('.popup__zoom-card'); // попап
 const popupClose = document.querySelector('.popup__close'); //  крестик
 const formCard = document.querySelector('.popup__form-card');
 const formElement = document.querySelector('.popup__form');
+const nameInput = document.querySelector('.popup__input_user-name'); // поля формы в DOM (попап)
+const jobInput = document.querySelector('.popup__input_user-about'); //поля формы в DOM (попап)
+const profileName = document.querySelector('.profile__user-info-name'); // элементы, куда должны быть вставлены значения полей
+const profileJob = document.querySelector('.profile__user-info-about'); //элементы, куда должны быть вставлены значения полей
+
 
 // 1 Открыть попапы, поставить лайк, удалить карточку
 
@@ -133,13 +138,6 @@ document.addEventListener('keydown', function(evt) {
 
 // 3 Редактировать поля ввода о пользователе
 
-// 3.1 Находим поля формы в DOM (попап)
-let nameInput = document.querySelector('.popup__input_user-name');
-let jobInput = document.querySelector('.popup__input_user-about');
-// 3.2 Выбераем элементы, куда должны быть вставлены значения полей
-let profileName = document.querySelector('.profile__user-info-name');
-let profileJob = document.querySelector('.profile__user-info-about');
-// 3.3 Форме ввода из попапа задаем значения "по умолчанию" со страницы
 function reset() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
@@ -157,7 +155,6 @@ function formSubmitHandler(evt) {
 }
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
-
 
 
 // 5 Добавить новую карточку
