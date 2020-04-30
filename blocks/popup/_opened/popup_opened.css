@@ -2,6 +2,7 @@
     visibility: visible;
     transition: all .7s ease;
     -moz-transition: all .7s ease;
+    -webkit-transition: all .7s ease;
     display: flex;
     opacity: 1;
 }
