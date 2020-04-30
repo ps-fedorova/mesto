@@ -59,7 +59,8 @@ const nameInput = document.querySelector('.popup__input_user-name'); // поля
 const jobInput = document.querySelector('.popup__input_user-about'); //поля формы в DOM (попап)
 const profileName = document.querySelector('.profile__user-info-name'); // элементы, куда должны быть вставлены значения полей
 const profileJob = document.querySelector('.profile__user-info-about'); //элементы, куда должны быть вставлены значения полей
-
+const popupInputNewCard = document.querySelector('.popup__input_new-card');
+const popupInputNewCardLink = document.querySelector('.popup__input_new-card-link');
 
 // 1 Открыть попапы, поставить лайк, удалить карточку
 
@@ -138,11 +139,11 @@ document.addEventListener('keydown', function(evt) {
 
 // 3 Редактировать поля ввода о пользователе
 
-function reset() {
+function setFormData() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 }
-reset();
+setFormData();
 
 
 // 4 Сохраненить изменения
@@ -154,7 +155,6 @@ function formSubmitHandler(evt) {
     popupCloseFunction();
 }
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
 
 
 // 5 Добавить новую карточку
@@ -162,11 +162,16 @@ formElement.addEventListener('submit', formSubmitHandler);
 function addNewCard(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы, чтобы страница не перезагружалась.
     const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.card__name').textContent = document.querySelector('.popup__input_new-card').value;
-    cardElement.querySelector('.card__image').src = document.querySelector('.popup__input_new-card-link').value;
+    cardElement.querySelector('.card__name').textContent = popupInputNewCard.value;
+    cardElement.querySelector('.card__image').src = popupInputNewCardLink.value;
     cards.prepend(cardElement);
     popupCloseFunction(); // закрыть попап
-    document.querySelector('.popup__input_new-card').value = ''; // значения "по умолчанию"
-    document.querySelector('.popup__input_new-card-link').value = '';
+    popupInputNewCard.value = ''; // значения "по умолчанию"
+    popupInputNewCardLink.value = '';
 }
+
+
+// Слушатели событий
+
+formElement.addEventListener('submit', formSubmitHandler);
 formCard.addEventListener('submit', addNewCard);

@@ -1,6 +1,7 @@
 .popup_closed {
     display: flex;
     transition: all .7s ease;
+    -moz-transition: all .7s ease;
     opacity: 0;
     /*полностью прозрачный. карточка скрыта*/
     visibility: hidden;
