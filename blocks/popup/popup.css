@@ -6,8 +6,6 @@
 @import url(./__title/popup__title.css);
 @import url(./__button/popup__button.css);
 @import url(./__input/popup__input.css);
-@import url(./_closed/popup_closed.css);
-@import url(./_opened/popup_opened.css);
 .popup {
     position: fixed;
     top: 0;
@@ -17,4 +15,13 @@
     background-color: rgba(0, 0, 0, .5);
     align-items: center;
     justify-content: center;
+    display: flex;
+    transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+    -o-transition: all .7s ease;
+    -ms-transition: all .7s ease;
+    opacity: 0;
+    /*полностью прозрачный. карточка скрыта*/
+    visibility: hidden;
 }
