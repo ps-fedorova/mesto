@@ -169,7 +169,10 @@ document.addEventListener('click', function(evt) {
 
 // закрыть кнопкой Esc
 document.addEventListener('keydown', function(evt) {
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === 27 &&
+        (document.querySelector('.popup__edit-profile').classList.contains('popup_opened') ||
+            document.querySelector('.popup__add-card').classList.contains('popup_opened') ||
+            document.querySelector('.popup__zoom-card').classList.contains('popup_opened'))) {
         const popupOpened = document.querySelector('.popup_opened'); // открытый попап
         openOrClosePopup(popupOpened);
     }
