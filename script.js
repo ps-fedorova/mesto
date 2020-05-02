@@ -49,11 +49,6 @@ const popupClose = document.querySelector('.popup__close'); //  крестик
 const profileButtonAdd = document.querySelector('.profile__button-add'); // кнопка "Добавить карточку"
 const profileButtonEdit = document.querySelector('.profile__button-edit'); // кнопка "Редактировать профиль"
 
-/*костыли*/
-// const popupCloseEdit = document.querySelector('.popup__close-edit'); //  крестик "Редактировать профиль"
-// const popupCloseAdd = document.querySelector('.popup__close-add'); //  крестик "Добавить карточку"
-// const popupCloseZoom = document.querySelector('.popup__close-zoom'); //  крестик "Картинка-зум"
-
 
 // Функция открытия и закрытия попапа
 function openOrClosePopup(popup) {
@@ -174,25 +169,6 @@ document.addEventListener('keydown', function(evt) {
         openOrClosePopup(popupOpened);
     }
 });
-
-
-
-// усли popup содержит popup_opened, вывести "привет!"
-
-
-/* Мне кажется, это костыли, но это тоже работает.
-popupCloseEdit.addEventListener('click', function() {
-    openOrClosePopup(popupEdit);
-});
-
-popupCloseAdd.addEventListener('click', function() {
-    openOrClosePopup(popupAddCard);
-});
-
-popupCloseZoom.addEventListener('click', function() {
-    openOrClosePopup(popupZoomCard);
-});
-*/
 
 
 formElement.addEventListener('submit', formSubmitHandler);
