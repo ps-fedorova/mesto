@@ -16,11 +16,11 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    transition: all .7s ease;
-    -moz-transition: all .7s ease;
-    -webkit-transition: all .7s ease;
-    -o-transition: all .7s ease;
-    -ms-transition: all .7s ease;
+    transition: .7s ease;
+    -moz-transition: .7s ease;
+    -webkit-transition: .7s ease;
+    -o-transition: .7s ease;
+    -ms-transition: .7s ease;
     opacity: 0;
     /*полностью прозрачный. карточка скрыта*/
     visibility: hidden;
