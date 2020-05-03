@@ -15,10 +15,10 @@
     padding-top: 40px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 919px) {
     .profile {
         display: block;
-        width: 100%;
+        /*width: 100%;*/
         padding-top: 42px;
     }
 }

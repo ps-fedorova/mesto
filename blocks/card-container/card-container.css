@@ -1,26 +1,32 @@
-.cards {
+.card-container {
+    list-style: none;
+    padding: 0;
     padding-top: 48px;
     display: grid;
     margin: 0 auto;
-    grid-template-columns: repeat(auto-fill, 279.5px);
+    grid-template-columns: repeat(auto-fill, 280px);
     grid-row-gap: 19px;
     grid-column-gap: 20px;
+    justify-content: center;
 }
 
+
+/*
 @media screen and (max-width: 919px) {
-    .cards {
+    .card-container {
         grid-template-columns: repeat(2, 2fr)
     }
 }
 
 @media screen and (max-width: 619px) {
-    .cards {
+    .card-container {
         grid-template-columns: 1fr;
     }
 }
+*/
 
 @media screen and (max-width: 375px) {
-    .cards {
+    .card-container {
         padding-top: 36px;
     }
 }

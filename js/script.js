@@ -44,8 +44,8 @@ const profileJob = document.querySelector('.profile__user-info-about'); //эле
 const popupInputNewCard = document.querySelector('.popup__input_new-card');
 const popupInputNewCardLink = document.querySelector('.popup__input_new-card-link');
 const cardTemplate = document.querySelector('#card-template').content;
-const cards = document.querySelector('.cards');
-const popupClose = document.querySelector('.popup__close'); //  крестик
+const cardContainer = document.querySelector('.card-container');
+// const popupClose = document.querySelector('.popup__close'); //  крестик
 const profileButtonAdd = document.querySelector('.profile__button-add'); // кнопка "Добавить карточку"
 const profileButtonEdit = document.querySelector('.profile__button-edit'); // кнопка "Редактировать профиль"
 
@@ -57,8 +57,8 @@ function openOrClosePopup(popup) {
 
 // Удалить карточку
 function cardDelete(evt) {
-    //cards.removeChild(evt.target.closest('.card')); // аналог
-    evt.target.closest('.card__button-delete').parentElement.remove();
+    //cardContainer.removeChild(evt.target.closest('.card')); // аналог
+    evt.target.closest('.card').remove();
 };
 
 // Поставить лайк
@@ -74,7 +74,7 @@ function zoom(evt) {
 }
 
 // Функция создания элемента карточки
-function createCard(name, link) {
+function createCard(name, link, alt) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardName = cardElement.querySelector('.card__name');
@@ -90,15 +90,22 @@ function createCard(name, link) {
     return cardElement;
 };
 
-// Функция добавления карточки с помощью метода forEach
+// Функция добавления карточки с помощью метода forEach через деструктуризацию
 function addCards() {
-    initialCards.forEach((card) => {
-        const name = card.name;
-        const link = card.link;
-        cards.append(createCard(name, link));
-    })
+    initialCards.forEach(({ name, link }) => cardContainer.append(createCard(name, link)));
 };
 
+/*
+// Функция добавления карточки с помощью метода forEach
+function addCards() {
+
+  initialCards.forEach((card) => {
+      const name = card.name;
+      const link = card.link;
+      cards.append(createCard(name, link));
+  })
+};
+*/
 /*
 // Функция добавления карточки через цикл for
 function addCards() {
@@ -106,7 +113,7 @@ for (let i = 0; i < initialCards.length; i++) {
   const card = initialCards[i];
   const name = card.name;
   const link = card.link;
-  cards.append(createCard(name, link));
+  cardContainer.append(createCard(name, link));
 };
 }
 addCards();
@@ -143,7 +150,7 @@ function formSubmitHandler(evt) {
 // Добавить новую карточку
 function addNewCard(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы, чтобы страница не перезагружалась.
-    cards.prepend(createCard(popupInputNewCard.value, popupInputNewCardLink.value));
+    cardContainer.prepend(createCard(popupInputNewCard.value, popupInputNewCardLink.value));
 
     openOrClosePopup(popupAddCard); // закрыть попап
 

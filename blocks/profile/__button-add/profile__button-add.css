@@ -8,14 +8,26 @@
     padding: 0px;
 }
 
-.profile__button-add:hover {
-    opacity: .6;
-    transition: 350ms;
-}
 
-@media screen and (max-width: 900px) {
+/*@media screen and (max-width: 900px) {
     .profile__button-add {
         width: 100%;
         margin-top: 33px;
+    }
+}*/
+
+@media screen and (max-width: 919px) {
+    .profile__button-add {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: calc(280px * 2 + 20px);
+        margin-top: 33px;
+    }
+}
+
+@media screen and (max-width: 619px) {
+    .profile__button-add {
+        max-width: 280px;
     }
 }

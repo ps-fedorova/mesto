@@ -6,8 +6,3 @@
     width: 21px;
     padding: 0;
 }
-
-.card__button-like:hover {
-    opacity: .6;
-    transition: 350ms;
-}

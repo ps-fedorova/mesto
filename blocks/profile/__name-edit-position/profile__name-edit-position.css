@@ -1,11 +1,12 @@
 .profile__name-edit-position {
     display: grid;
     grid-template-columns: max-content min-content;
+    grid-column-gap: 10px;
 }
 
 @media screen and (max-width: 700px) {
     .profile__name-edit-position {
-        grid-template-columns: fit-content(270px) min-content;
+        grid-template-columns: fit-content(256px) min-content;
         min-width: auto;
         justify-content: center;
         margin: auto;
@@ -15,12 +16,6 @@
 
 @media screen and (max-width: 450px) {
     .profile__name-edit-position {
-        grid-template-columns: fit-content(230px) min-content;
-    }
-}
-
-@media screen and (max-width: 375px) {
-    .profile__name-edit-position {
-        grid-template-columns: fit-content(200px) min-content;
+        grid-template-columns: fit-content(252px) min-content;
     }
 }

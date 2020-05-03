@@ -3,7 +3,7 @@
     min-width: 518px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 919px) {
     .profile__position {
         justify-content: center;
     }
