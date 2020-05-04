@@ -10,22 +10,7 @@
     justify-content: center;
 }
 
-
-/*
 @media screen and (max-width: 919px) {
-    .card-container {
-        grid-template-columns: repeat(2, 2fr)
-    }
-}
-
-@media screen and (max-width: 619px) {
-    .card-container {
-        grid-template-columns: 1fr;
-    }
-}
-*/
-
-@media screen and (max-width: 375px) {
     .card-container {
         padding-top: 36px;
     }

@@ -1,10 +1,10 @@
-.popup_opened {
-    visibility: visible;
-    transition: .7s ease;
-    -moz-transition: .7s ease;
-    -webkit-transition: .7s ease;
-    -o-transition: .7s ease;
-    -ms-transition: .7s ease;
-    display: flex;
-    opacity: 1;
-}
+    .popup_opened {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+        -moz-transition-delay: 0s;
+        -webkit-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        -ms-transition-delay: 0s;
+    }

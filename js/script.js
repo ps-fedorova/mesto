@@ -1,3 +1,11 @@
+/* "Вынести добавление в разметку в отдельный метод,
+т.к. этот код повторяется и при отрисовке дефолтных карт и при добавлении пользовательской карты"
+
+новая карточка у меня добавляется методом prepend(), а дефолтные - .append().
+Где-то в лекциях написано, что метод .append() предпочтительнее, и где можно, нужно его использовать.
+Если в данном случае разумно все карточки добавлять одним методом - переделаю.
+Я не очень хорошо пока соображаю, но очень стараюсь разобраться. Сообщение это потом удалю.*/
+
 // Карточки по умолчанию
 
 const initialCards = [{
@@ -43,9 +51,9 @@ const profileName = document.querySelector('.profile__user-info-name'); // эл�
 const profileJob = document.querySelector('.profile__user-info-about'); //элементы, куда должны быть вставлены значения полей
 const popupInputNewCard = document.querySelector('.popup__input_new-card');
 const popupInputNewCardLink = document.querySelector('.popup__input_new-card-link');
+const popupInputNewCardAlt = document.querySelector('.popup__input_new-card');
 const cardTemplate = document.querySelector('#card-template').content;
 const cardContainer = document.querySelector('.card-container');
-// const popupClose = document.querySelector('.popup__close'); //  крестик
 const profileButtonAdd = document.querySelector('.profile__button-add'); // кнопка "Добавить карточку"
 const profileButtonEdit = document.querySelector('.profile__button-edit'); // кнопка "Редактировать профиль"
 
@@ -57,31 +65,33 @@ function openOrClosePopup(popup) {
 
 // Удалить карточку
 function cardDelete(evt) {
-    //cardContainer.removeChild(evt.target.closest('.card')); // аналог
     evt.target.closest('.card').remove();
 };
 
 // Поставить лайк
 function like(evt) {
-    evt.target.classList.toggle('card__button-like_solid');;
+    evt.target.classList.toggle('card__button-like_solid');
 }
 
 // Зум картинки
 function zoom(evt) {
-    openOrClosePopup(popupZoomCard);
     popupImage.src = evt.target.src;
+    popupImage.alt = `проблема со ссылкой на изображение "${evt.target.parentNode.textContent}"`;
     popupCardName.textContent = evt.target.parentNode.textContent;
+    openOrClosePopup(popupZoomCard);
 }
 
 // Функция создания элемента карточки
-function createCard(name, link, alt) {
+function createCard(name, link) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardName = cardElement.querySelector('.card__name');
     const cardButtonDeleteVector = cardElement.querySelector('.card__button-delete-vector');
     const cardButtonLike = cardElement.querySelector('.card__button-like');
+
     cardName.textContent = name;
     cardImage.src = link;
+    cardImage.alt = `Проблема со ссылкой на изображение "${name}"`;
 
     cardButtonDeleteVector.addEventListener('click', cardDelete);
     cardButtonLike.addEventListener('click', like);
@@ -94,6 +104,7 @@ function createCard(name, link, alt) {
 function addCards() {
     initialCards.forEach(({ name, link }) => cardContainer.append(createCard(name, link)));
 };
+
 
 /*
 // Функция добавления карточки с помощью метода forEach
@@ -118,13 +129,16 @@ for (let i = 0; i < initialCards.length; i++) {
 }
 addCards();
 */
-
-// Добавить карточку
-profileButtonAdd.addEventListener('click', function(evt) {
-    if (evt.target.classList.contains('profile__button-add') || evt.target.classList.contains('profile__button-add-vector')) {
-        openOrClosePopup(popupAddCard); // добавить карточку
-    };
+/*
+// Добавить карточку аналог для сравнения
+profileButtonAdd.addEventListener('click', function() {
+    openOrClosePopup(popupAddCard);
 });
+*/
+
+
+// добавить карточку
+profileButtonAdd.addEventListener('click', () => openOrClosePopup(popupAddCard));
 
 // Редактировать профиль
 function setFormData() {
@@ -132,11 +146,9 @@ function setFormData() {
     jobInput.value = profileJob.textContent;
 };
 
-profileButtonEdit.addEventListener('click', function(evt) {
-    if (evt.target.classList.contains('profile__button-edit') || evt.target.classList.contains('profile__button-edit-vector')) {
-        openOrClosePopup(popupEdit);
-        setFormData();
-    };
+profileButtonEdit.addEventListener('click', () => {
+    setFormData();
+    openOrClosePopup(popupEdit);
 });
 
 // Сохраненить изменения данных о пользователе

@@ -3,6 +3,12 @@
     height: 22px;
 }
 
+@media screen and (max-width: 919px) {
+    .profile__button-add-vector {
+        margin: auto;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .profile__button-add-vector {
         width: 16px;

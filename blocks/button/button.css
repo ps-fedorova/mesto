@@ -3,7 +3,6 @@
     border: none;
     outline: none;
     cursor: pointer;
-    transition: all linear 2s;
 }
 
 .button:hover {
