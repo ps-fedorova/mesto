@@ -1,8 +1,10 @@
 @import url(./_solid/card__button-like_solid.css);
 .card__button-like {
+    display: flex;
+    margin: auto;
+    margin-right: 0;
     background-image: url(../../../images/like-contour.svg);
-    background-repeat: no-repeat;
-    background-position: center;
     width: 21px;
+    height: 19px;
     padding: 0;
 }
