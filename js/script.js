@@ -61,10 +61,17 @@ const getCardImage = (card) => card.querySelector('.card__image');
 const getCardButtonDeleteVector = (card) => card.querySelector('.card__button-delete-vector');
 const getCardButtonLike = (card) => card.querySelector('.card__button-like');
 
-
 // Функция открытия и закрытия попапа
 function openOrClosePopup(popup) {
   popup.classList.toggle('popup_opened');
+
+  if (popup.classList.contains('popup_opened')) {
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', closeEsc);
+  } else {
+    document.removeEventListener('click', close);
+    document.removeEventListener('keydown', closeEsc);
+  }
 };
 
 // Поставить лайк
