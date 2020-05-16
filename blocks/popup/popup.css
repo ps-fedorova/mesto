@@ -1,11 +1,18 @@
 @import url(./__container/popup__container.css);
+@import url(./__form-field/popup__form-field.css);
 @import url(./__zoom/popup__zoom.css);
 @import url(./__image/popup__image.css);
 @import url(./__card-name/popup__card-name.css);
 @import url(./__close/popup__close.css);
 @import url(./__title/popup__title.css);
 @import url(./__button/popup__button.css);
+@import url(./__button/_disabled/popup__button_disabled.css);
 @import url(./__input/popup__input.css);
+@import url(./__input/_error/popup__input_error.css);
+@import url(./__closed/popup__closed.css);
+@import url(./_opened/popup_opened.css);
+@import url(./__error/popup__error.css);
+@import url(./__error/_visible/popup__error_visible.css);
 .popup {
     position: fixed;
     top: 0;
@@ -16,11 +23,4 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 1s, visibility 0s linear 1s;
-    -moz-transition: opacity 1s, visibility 0s linear 1s;
-    -webkit-transition: opacity 1s, visibility 0s linear 1s;
-    -o-transition: opacity 1s, visibility 0s linear 1s;
-    -ms-transition: opacity 1s, visibility 0s linear 1s;
 }

@@ -1,10 +1,13 @@
 .popup__input {
     font-size: 14px;
     width: 100%;
-    height: 56px;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     box-sizing: border-box;
-    padding-top: 18px;
+    padding-bottom: 8px;
     outline: none;
+}
+
+.form__input:invalid {
+    border-bottom: 1px solid red;
 }

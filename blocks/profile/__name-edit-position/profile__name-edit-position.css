@@ -1,12 +1,13 @@
 .profile__name-edit-position {
     display: grid;
-    grid-template-columns: max-content min-content;
-    grid-column-gap: 10px;
+    grid-template-columns: fit-content(452px) min-content;
+    grid-column-gap: 20px;
 }
 
 @media screen and (max-width: 700px) {
     .profile__name-edit-position {
         grid-template-columns: fit-content(256px) min-content;
+        grid-column-gap: 8px;
         min-width: auto;
         justify-content: center;
         margin: auto;
