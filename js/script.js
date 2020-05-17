@@ -54,6 +54,14 @@ const popupZoomCard = document.querySelector('.popup__zoom-card'); // попап
 const popupImage = popupZoomCard.querySelector('.popup__image'); // картинка
 const popupCardName = popupZoomCard.querySelector('.popup__card-name'); // подпись к картинке
 
+const popupParameters = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error_visible'
+}
 
 // ОБЪЯВЛЕНИЕ ФУНКЦИЙ
 
