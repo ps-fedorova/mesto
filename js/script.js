@@ -61,6 +61,8 @@ const getCardImage = (card) => card.querySelector('.card__image');
 const getCardButtonDeleteVector = (card) => card.querySelector('.card__button-delete-vector');
 const getCardButtonLike = (card) => card.querySelector('.card__button-like');
 
+const arrayInputs = (formElement) => Array.from(formElement.querySelectorAll('.popup__input')); // массив из полей формы
+
 // Функция открытия и закрытия попапа
 function openOrClosePopup(popup) {
   popup.classList.toggle('popup_opened');
@@ -117,8 +119,7 @@ function addCards() {
 
 // Убрать ошибку, если пользователь закрыл попап и при этом ввел невалидные данные
 function clearError(formElement) {
-  const inputs = Array.from(formElement.querySelectorAll('.popup__input'));
-  inputs.forEach(inputElement => {
+  arrayInputs(formElement).forEach(inputElement => {
     if (inputElement.classList.contains('popup__input_error')) {
       hideInputError(formElement, inputElement, 'popup__input_error', 'popup__error_visible');
     }
@@ -187,12 +188,6 @@ profileButtonAdd.addEventListener('click', () => {
   setNewCard();
   openOrClosePopup(popupAddCard);
 });
-
-// закрыть по крестику и кликом по фону
-document.addEventListener('click', close);
-
-// закрыть кнопкой Esc
-document.addEventListener('keydown', closeEsc);
 
 // сохранить данные профиля
 popupFormEditProfile.addEventListener('submit', formSubmitHandler);

@@ -45,19 +45,18 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 
 // Установить обработчики всем полям формы
 const setEventListeners = (formElement, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
-  // Найдем все поля формы и сделаем из них массив
-  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+
   // Найдем в текущей форме кнопку отправки
   const buttonElement = formElement.querySelector(submitButtonSelector);
 
   // чтобы отключить кнопку в самом начале
-  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  toggleButtonState(arrayInputs(formElement), buttonElement, inactiveButtonClass);
 
-  inputList.forEach((inputElement) => {
+  arrayInputs(formElement).forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, rest);
       // чтобы проверять его при изменении любого из полей
-      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+      toggleButtonState(arrayInputs(formElement), buttonElement, inactiveButtonClass);
     });
   });
 };
