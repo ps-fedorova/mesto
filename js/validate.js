@@ -4,8 +4,8 @@
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
-  errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
+  errorElement.textContent = errorMessage;
 };
 
 // Скрыть сообщение об ошибке
@@ -17,11 +17,11 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
 };
 
 // Проверить валидность поля
-const checkInputValidity = (formElement, inputElement, { inputErrorClass, errorClass }) => {
+const checkInputValidity = (formElement, inputElement, popupParameters) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+    showInputError(formElement, inputElement, inputElement.validationMessage, popupParameters.inputErrorClass, popupParameters.errorClass);
   } else {
-    hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+    hideInputError(formElement, inputElement, popupParameters.inputErrorClass, popupParameters.errorClass);
   }
 };
 
@@ -44,30 +44,32 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 };
 
 // Установить обработчики всем полям формы
-const setEventListeners = (formElement, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
+const setEventListeners = (formElement, popupParameters) => {
 
   // Найдем в текущей форме кнопку отправки
-  const buttonElement = formElement.querySelector(submitButtonSelector);
+  const buttonElement = formElement.querySelector(popupParameters.submitButtonSelector);
 
   // чтобы отключить кнопку в самом начале
-  toggleButtonState(arrayInputs(formElement), buttonElement, inactiveButtonClass);
+  toggleButtonState(arrayInputs(formElement), buttonElement, popupParameters.inactiveButtonClass);
 
   arrayInputs(formElement).forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement, rest);
+      checkInputValidity(formElement, inputElement, popupParameters);
       // чтобы проверять его при изменении любого из полей
-      toggleButtonState(arrayInputs(formElement), buttonElement, inactiveButtonClass);
+      toggleButtonState(arrayInputs(formElement), buttonElement, popupParameters.inactiveButtonClass);
     });
   });
 };
 
+
 // Добавить обработчики всем формам
-function enableValidation({ formSelector, ...rest }) {
-  const formList = Array.from(document.querySelectorAll(formSelector));
-  formList.forEach(form => setEventListeners(form, rest));
+function enableValidation(popupParameters) {
+  const formList = Array.from(document.querySelectorAll(popupParameters.formSelector));
+  formList.forEach(form => setEventListeners(form, popupParameters));
 }
 
 
 // ВЫЗОВ ФУНКЦИЙ
 
 enableValidation(popupParameters);
+

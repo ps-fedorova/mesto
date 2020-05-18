@@ -127,11 +127,7 @@ function addCards() {
 
 // Убрать ошибку, если пользователь закрыл попап и при этом ввел невалидные данные
 function clearError(formElement) {
-  arrayInputs(formElement).forEach(inputElement => {
-    if (inputElement.classList.contains('popup__input_error')) {
-      hideInputError(formElement, inputElement, 'popup__input_error', 'popup__error_visible');
-    }
-  });
+  arrayInputs(formElement).forEach(inputElement => hideInputError(formElement, inputElement, popupParameters.inputErrorClass, popupParameters.errorClass));
 }
 
 // Установить данные "по умолчанию" для профиля
