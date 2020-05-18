@@ -6,3 +6,10 @@
     color: red;
     display: none;
 }
+
+@media screen and (max-width: 419px) {
+  .popup__error {
+    top: calc(100% + 1px);
+    line-height: 1.2;
+  }
+}
