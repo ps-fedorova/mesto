@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 // ОБЪЯВЛЕНИЕ ПЕРЕМЕННЫХ
 
 const initialCards = [{
@@ -63,13 +66,12 @@ const popupParameters = {
   errorClass: 'popup__error_visible'
 }
 
+const profileValidator = new FormValidator(popupParameters, popupFormEditProfile);
+const cardValidator = new FormValidator(popupParameters, popupFormCardNew);
+
 // ОБЪЯВЛЕНИЕ ФУНКЦИЙ
 
-const getCardImage = (card) => card.querySelector('.card__image');
-const getCardButtonDeleteVector = (card) => card.querySelector('.card__button-delete-vector');
-const getCardButtonLike = (card) => card.querySelector('.card__button-like');
-
-const arrayInputs = (formElement) => Array.from(formElement.querySelectorAll('.popup__input')); // массив из полей формы
+//const arrayInputs = (formElement) => Array.from(formElement.querySelectorAll('.popup__input')); // массив из полей формы
 
 // Функция открытия и закрытия попапа
 function openOrClosePopup(popup) {
@@ -84,59 +86,39 @@ function openOrClosePopup(popup) {
   }
 };
 
-// Поставить лайк
-function like(evt) {
-  evt.target.classList.toggle('card__button-like_solid');
+// Установить данные "по умолчанию" для новой карточки
+function setNewCard() {
+  popupInputNewCard.value = '';
+  popupInputNewCardLink.value = '';
+  cardValidator.enableValidation();
+  popupButtonAddCard.classList.add('popup__button_disabled'); // отключить кнопку "Создать" при пустых значениях
 }
 
-// Зум картинки
-function zoom(evt) {
-  popupCardName.textContent = evt.target.alt;
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  openOrClosePopup(popupZoomCard);
-}
-
-// Удалить карточку
-function deleteCard(evt) {
-  const card = evt.target.closest('.card');
-  getCardButtonDeleteVector(card).addEventListener('click', deleteCard);
-  getCardButtonLike(card).addEventListener('click', like);
-  getCardImage(card).addEventListener('click', zoom);
-  card.remove();
-};
-
-// Создать элемент карточки
-function createCard(name, link) {
-  const card = cardTemplate.cloneNode(true);
-
-  card.querySelector('.card__name').textContent = name;
-  getCardImage(card).src = link;
-  getCardImage(card).alt = name;
-
-  getCardButtonDeleteVector(card).addEventListener('click', deleteCard);
-  getCardButtonLike(card).addEventListener('click', like);
-  getCardImage(card).addEventListener('click', zoom);
-  return card;
-};
-
-// Добавить карточки с помощью метода forEach через деструктуризацию
+// Добавить начальные карточки
 function addCards() {
-  initialCards.forEach(({ name, link }) => cardContainer.append(createCard(name, link)));
+  initialCards.forEach((item) => {
+    const card = new Card(item, '#card-template').generateCard();
+    cardContainer.append(card);
+  });
 };
 
-// Убрать ошибку, если пользователь закрыл попап и при этом ввел невалидные данные
-function clearError(formElement) {
-  arrayInputs(formElement).forEach(inputElement => hideInputError(formElement, inputElement, popupParameters.inputErrorClass, popupParameters.errorClass));
-}
+// Добавить новую карточку
+function addNewCard(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы, чтобы страница не перезагружалась.
+  const card = new Card({
+    name: popupInputNewCard.value,
+    link: popupInputNewCardLink.value
+  }, '#card-template').generateCard();
+  cardContainer.prepend(card);
+  openOrClosePopup(popupAddCard); // закрыть попап
+};
 
 // Установить данные "по умолчанию" для профиля
 function setFormData() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  clearError(popupEdit);
-  // включить кнопку "Сохранить" при первом открытии
-  popupButtonEdit.classList.remove('popup__button_disabled');
+  profileValidator.enableValidation();
+  popupButtonEdit.classList.remove('popup__button_disabled'); // включить кнопку "Сохранить" при первом открытии
 };
 
 // Добавить данные о пользователе
@@ -145,22 +127,6 @@ function formSubmitHandler(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   openOrClosePopup(popupEdit);
-};
-
-// Установить данные "по умолчанию" для новой карточки
-function setNewCard() {
-  popupInputNewCard.value = '';
-  popupInputNewCardLink.value = '';
-  clearError(popupAddCard);
-  // отключить кнопку "Создать" при пустых значениях
-  popupButtonAddCard.classList.add('popup__button_disabled');
-}
-
-// Добавить новую карточку
-function addNewCard(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы, чтобы страница не перезагружалась.
-  cardContainer.prepend(createCard(popupInputNewCard.value, popupInputNewCardLink.value));
-  openOrClosePopup(popupAddCard); // закрыть попап
 };
 
 // Закрыть по крестику и кликом по фону
@@ -178,7 +144,6 @@ function closeEsc(evt) {
   }
 }
 
-
 // СЛУШАТЕЛИ
 
 // редактировать профиль
@@ -186,6 +151,10 @@ profileButtonEdit.addEventListener('click', () => {
   setFormData();
   openOrClosePopup(popupEdit);
 });
+
+// сохранить новую карточку
+popupFormCardNew.addEventListener('submit', addNewCard);
+
 
 // добавить карточку
 profileButtonAdd.addEventListener('click', () => {
@@ -196,10 +165,13 @@ profileButtonAdd.addEventListener('click', () => {
 // сохранить данные профиля
 popupFormEditProfile.addEventListener('submit', formSubmitHandler);
 
-// сохранить новую карточку
-popupFormCardNew.addEventListener('submit', addNewCard);
-
 
 // ВЫЗОВ ФУНКЦИЙ
-
 addCards(); // Загрузка карточек "по умолчанию"
+profileValidator.enableValidation(); // Валидация полей ввода попапа "Редактировать профиль"
+cardValidator.enableValidation(); // Валидация полей ввода попапа "Добавить карточку"
+
+
+// ЭКСПОРТ
+export {popupZoomCard, popupImage, popupCardName, openOrClosePopup};
+
