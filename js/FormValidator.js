@@ -40,7 +40,7 @@ export class FormValidator {
   }
 
   // Проверить все поля ввода на валидность
-  _hasInvalidInput = (inputList) => {
+  _hasInvalidInput(inputList) {
     // проходим по этому массиву методом some
     return inputList.some((inputElement) => {
       // Если поле не валидно, колбэк вернёт true. Обход массива прекратится и вся фунцкция hasInvalidInput вернёт true
@@ -77,9 +77,3 @@ export class FormValidator {
     this._clearError()
   }
 }
-
-
-
-
-
-

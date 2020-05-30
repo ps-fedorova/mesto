@@ -57,8 +57,3 @@ export class Card {
     return this._card;
   }
 }
-
-
-
-
-

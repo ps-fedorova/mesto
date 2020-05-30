@@ -170,4 +170,3 @@ cardValidator.enableValidation(); // Валидация полей ввода п
 
 // ЭКСПОРТ
 export { popupZoomCard, popupImage, popupCardName, openOrClosePopup };
-
