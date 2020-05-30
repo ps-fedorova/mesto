@@ -34,6 +34,11 @@ export class Card {
   // Удалить карточку
   _deleteCard(evt) {
     const card = evt.target.closest('.card');
+    // И ее слушатели тоже нужно удалить
+    card.querySelector('.card__button-delete-vector').removeEventListener('click', this._deleteCard);
+    card.querySelector('.card__button-like').removeEventListener('click', this._like);
+    card.querySelector('.card__image').removeEventListener('click', this._zoom);
+
     card.remove();
   }
 
