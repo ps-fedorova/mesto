@@ -92,10 +92,10 @@ function setNewCard() {
 }
 
 // Добавить начальные карточки
-function addCards() {
-  initialCards.forEach((item) => {
+function addCards(cards, сontainer) {
+  cards.forEach((item) => {
     const card = new Card(item, '#card-template').generateCard();
-    cardContainer.append(card);
+    сontainer.append(card);
   });
 };
 
@@ -163,7 +163,7 @@ popupFormEditProfile.addEventListener('submit', formSubmitHandler);
 
 
 // ВЫЗОВ ФУНКЦИЙ
-addCards(); // Загрузка карточек "по умолчанию"
+addCards(initialCards, cardContainer); // Загрузка карточек "по умолчанию"
 profileValidator.enableValidation(); // Валидация полей ввода попапа "Редактировать профиль"
 cardValidator.enableValidation(); // Валидация полей ввода попапа "Добавить карточку"
 
