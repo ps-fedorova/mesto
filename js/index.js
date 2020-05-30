@@ -38,7 +38,6 @@ const profileButtonEdit = profile.querySelector('.profile__button-edit'); // к�
 
 // Карточки
 const cardContainer = document.querySelector('.card-container'); // контейнер с карточками
-const cardTemplate = cardContainer.querySelector('#card-template').content; // шаблон карточки
 
 // Попапы
 const popupEdit = document.querySelector('.popup__edit-profile'); // попап "Редактировать профиль"
@@ -70,8 +69,6 @@ const profileValidator = new FormValidator(popupParameters, popupFormEditProfile
 const cardValidator = new FormValidator(popupParameters, popupFormCardNew);
 
 // ОБЪЯВЛЕНИЕ ФУНКЦИЙ
-
-//const arrayInputs = (formElement) => Array.from(formElement.querySelectorAll('.popup__input')); // массив из полей формы
 
 // Функция открытия и закрытия попапа
 function openOrClosePopup(popup) {
@@ -155,7 +152,6 @@ profileButtonEdit.addEventListener('click', () => {
 // сохранить новую карточку
 popupFormCardNew.addEventListener('submit', addNewCard);
 
-
 // добавить карточку
 profileButtonAdd.addEventListener('click', () => {
   setNewCard();
@@ -173,5 +169,5 @@ cardValidator.enableValidation(); // Валидация полей ввода п
 
 
 // ЭКСПОРТ
-export {popupZoomCard, popupImage, popupCardName, openOrClosePopup};
+export { popupZoomCard, popupImage, popupCardName, openOrClosePopup };
 

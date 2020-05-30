@@ -1,4 +1,4 @@
-import {popupZoomCard, popupImage, popupCardName, openOrClosePopup} from './index.js';
+import { popupZoomCard, popupImage, popupCardName, openOrClosePopup } from './index.js';
 
 export class Card {
   constructor(date, cardSelector) {
@@ -35,7 +35,7 @@ export class Card {
   _deleteCard(evt) {
     const card = evt.target.closest('.card');
     card.remove();
-  };
+  }
 
   // Установить слушатели событий
   _setEventListeners() {
@@ -56,7 +56,7 @@ export class Card {
 
     return this._card;
   }
-};
+}
 
 
 

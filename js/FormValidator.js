@@ -15,7 +15,7 @@ export class FormValidator {
     inputElement.classList.add(this._inputErrorClass);
     errorElement.classList.add(this._errorClass);
     errorElement.textContent = errorMessage;
-  };
+  }
 
   // Скрыть сообщение об ошибке
   _hideInputError(inputElement) {
@@ -23,7 +23,7 @@ export class FormValidator {
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
-  };
+  }
 
   // Проверить валидность поля
   _checkInputValidity(inputElement) {
@@ -32,7 +32,7 @@ export class FormValidator {
     } else {
       this._hideInputError(inputElement);
     }
-  };
+  }
 
   // Убрать ошибку, если пользователь закрыл попап и при этом ввел невалидные данные
   _clearError() {
@@ -46,7 +46,7 @@ export class FormValidator {
       // Если поле не валидно, колбэк вернёт true. Обход массива прекратится и вся фунцкция hasInvalidInput вернёт true
       return !inputElement.validity.valid;
     })
-  };
+  }
 
   // Переключать состояние кнопки
   _toggleButtonState(inputList, buttonElement) {
@@ -55,7 +55,7 @@ export class FormValidator {
     } else {
       buttonElement.classList.remove(this._inactiveButtonClass);
     }
-  };
+  }
 
   // Установить обработчики всем полям формы
   _setEventListeners() {
@@ -69,13 +69,13 @@ export class FormValidator {
         this._toggleButtonState(formList, buttonElement); // чтобы проверять его при изменении любого из полей
       });
     });
-  };
+  }
 
   // Добавить обработчики всем формам
   enableValidation() {
     this._setEventListeners();
     this._clearError()
-  };
+  }
 }
 
 
