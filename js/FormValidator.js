@@ -35,9 +35,24 @@ export class FormValidator {
   }
 
   // Убрать ошибку, если пользователь закрыл попап и при этом ввел невалидные данные
-  _clearError() {
+  clearError() {
     Array.from(this._formElement.querySelectorAll('.popup__input')).forEach(inputElement => this._hideInputError(inputElement));
   }
+
+  /*Это второй публичный метод. Избавляет от дублирования кода.
+  Был вариант его оформлить как _clearError() и смастерить вот такую конструкцию в конце:
+
+  enableValidation() {
+    this._setEventListeners();
+    this._clearError();
+  }
+
+Но! нужно будет вызывать .enableValidation при каждом открытии формы - тогда будет навешиваться лишний обработчик. Его будет нужно как-то удалять,
+чтобы избежать утечки памяти. Исходя из этого я позволила себе сделать 2 публичных метода. Я могу ошибаться в этом решении. Не знаю, как лучше.
+Я вообще плохо пока понимаю про утечку памяти. Буду благодарна, если этот момент вы проверите более тщательно.
+Надеюсь, сообщение не будет трактоваться как просьба о помощи, я хотела просто пояснить свое решение.
+  )*/
+
 
   // Проверить все поля ввода на валидность
   _hasInvalidInput(inputList) {
@@ -61,6 +76,7 @@ export class FormValidator {
   _setEventListeners() {
     const formList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector); // найдем в текущей форме кнопку отправки
+
     this._toggleButtonState(formList, buttonElement); // чтобы отключить кнопку в самом начале
 
     formList.forEach(inputElement => {
@@ -74,6 +90,5 @@ export class FormValidator {
   // Добавить обработчики всем формам
   enableValidation() {
     this._setEventListeners();
-    this._clearError()
   }
 }

@@ -87,7 +87,7 @@ function openOrClosePopup(popup) {
 function setNewCard() {
   popupInputNewCard.value = '';
   popupInputNewCardLink.value = '';
-  cardValidator.enableValidation();
+  cardValidator.clearError();
   popupButtonAddCard.classList.add('popup__button_disabled'); // отключить кнопку "Создать" при пустых значениях
 }
 
@@ -114,7 +114,7 @@ function addNewCard(evt) {
 function setFormData() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  profileValidator.enableValidation();
+  profileValidator.clearError();
   popupButtonEdit.classList.remove('popup__button_disabled'); // включить кнопку "Сохранить" при первом открытии
 };
 
