@@ -1,4 +1,8 @@
-import { popupZoomCard, popupImage, popupCardName, openOrClosePopup } from './index.js';
+import { openOrClosePopup } from './utils.js';
+
+const popupZoomCard = document.querySelector('.popup__zoom-card'); // попап "Картинка-зум"
+const popupImage = popupZoomCard.querySelector('.popup__image'); // картинка
+const popupCardName = popupZoomCard.querySelector('.popup__card-name'); // подпись к картинке
 
 export class Card {
   constructor(date, cardSelector) {

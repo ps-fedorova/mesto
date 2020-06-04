@@ -1,6 +1,9 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
+import { openOrClosePopup } from './utils.js';
+
+
 // ОБЪЯВЛЕНИЕ ПЕРЕМЕННЫХ
 
 const initialCards = [{
@@ -52,10 +55,6 @@ const popupInputNewCard = popupFormCardNew.querySelector('.popup__input_new-card
 const popupInputNewCardLink = popupFormCardNew.querySelector('.popup__input_new-card-link'); // поля формы в DOM (попап)
 const popupButtonAddCard = popupFormCardNew.querySelector('.popup__button'); // кнопка "Создать карточку"
 
-const popupZoomCard = document.querySelector('.popup__zoom-card'); // попап "Картинка-зум"
-const popupImage = popupZoomCard.querySelector('.popup__image'); // картинка
-const popupCardName = popupZoomCard.querySelector('.popup__card-name'); // подпись к картинке
-
 const popupParameters = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -69,19 +68,6 @@ const profileValidator = new FormValidator(popupParameters, popupFormEditProfile
 const cardValidator = new FormValidator(popupParameters, popupFormCardNew);
 
 // ОБЪЯВЛЕНИЕ ФУНКЦИЙ
-
-// Функция открытия и закрытия попапа
-function openOrClosePopup(popup) {
-  popup.classList.toggle('popup_opened');
-
-  if (popup.classList.contains('popup_opened')) {
-    document.addEventListener('click', close);
-    document.addEventListener('keydown', closeEsc);
-  } else {
-    document.removeEventListener('click', close);
-    document.removeEventListener('keydown', closeEsc);
-  }
-};
 
 // Установить данные "по умолчанию" для новой карточки
 function setNewCard() {
@@ -127,21 +113,6 @@ function formSubmitHandler(evt) {
   openOrClosePopup(popupEdit);
 };
 
-// Закрыть по крестику и кликом по фону
-function close(evt) {
-  if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
-    openOrClosePopup(evt.target.closest('.popup'));
-  };
-};
-
-// Закрыть кнопкой Esc
-function closeEsc(evt) {
-  const popupOpened = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape' && popupOpened) {
-    openOrClosePopup(popupOpened);
-  }
-}
-
 // СЛУШАТЕЛИ
 
 // редактировать профиль
@@ -168,6 +139,3 @@ addCards(initialCards, cardContainer); // Загрузка карточек "п�
 profileValidator.enableValidation(); // Валидация полей ввода попапа "Редактировать профиль"
 cardValidator.enableValidation(); // Валидация полей ввода попапа "Добавить карточку"
 
-
-// ЭКСПОРТ
-export { popupZoomCard, popupImage, popupCardName, openOrClosePopup };
