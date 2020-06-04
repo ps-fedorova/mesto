@@ -89,6 +89,7 @@ function setNewCard() {
   popupInputNewCardLink.value = '';
   cardValidator.clearError();
   popupButtonAddCard.classList.add('popup__button_disabled'); // отключить кнопку "Создать" при пустых значениях
+  // popupButtonAddCard.disabled = true; //эта строчка не работает и даже не понимаю, как именно она должна работать
 }
 
 // Добавить начальные карточки
