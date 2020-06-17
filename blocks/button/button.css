@@ -1,11 +1,11 @@
 .button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .button:hover {
-    opacity: .6;
-    transition: 350ms;
+  opacity: .6;
+  transition: 350ms;
 }
