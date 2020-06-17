@@ -119,7 +119,6 @@ const addNewCard = () => {
   cardContainer.prepend(card);
 }
 
-
 const renderCardPopup = () => {
 
   popupInputNewCard.value = '';
