@@ -26,5 +26,5 @@
 * Webpack
 
 
-[Посмотреть работу](https://ps-fedorova.github.io/testpro/)
+[Посмотреть работу](https://ps-fedorova.github.io/mesto/)
 
