@@ -1,3 +1,5 @@
+import './index.css';
+
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -96,6 +98,7 @@ const renderProfilePopup = () => {
 const handleCardClick = (evt) => {
   popupWithImage.openPopupImage(evt);
 }
+
 
 // Загрузка карточек "по умолчанию" (отрисовка элементов на странице)
 const cardsList = new Section({
