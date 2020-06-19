@@ -56,6 +56,7 @@ const popupAddCard = document.querySelector('.popup__add-card'); // попап "
 const popupFormCardNew = popupAddCard.querySelector('.popup__form-card-new'); // форма
 const popupInputNewCard = popupFormCardNew.querySelector('.popup__input_new-card'); // поля формы в DOM (попап)
 const popupInputNewCardLink = popupFormCardNew.querySelector('.popup__input_new-card-link'); // поля формы в DOM (попап)
+const popupButtonAddCard = popupFormCardNew.querySelector('.popup__button'); // кнопка "Создать карточку"
 
 const popupParameters = {
   formSelector: '.popup__form',
@@ -108,7 +109,6 @@ const renderProfilePopup = () => {
 }
 
 
-
 //  Карточки
 const handleCardClick = (evt) => {
   popupWithImage.openPopupImage(evt);
@@ -126,7 +126,7 @@ const cardsList = new Section({
 
 // Рендерить новую карточку
 const renderCardPopup = () => {
-
+  popupButtonAddCard.classList.add('popup__button_disabled'); // выключить кнопку "Сохранить"
   popupInputNewCard.value = '';
   popupInputNewCardLink.value = '';
   cardValidator.clearError();
