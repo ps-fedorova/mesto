@@ -1,4 +1,4 @@
-import './index.css';
+//import './index.css';
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -66,51 +66,11 @@ const popupParameters = {
   errorClass: 'popup__error_visible'
 }
 
-const profileValidator = new FormValidator(popupParameters, popupFormEditProfile); // валидация инпутов попапа "Редактировать профиль"
-const cardValidator = new FormValidator(popupParameters, popupFormCardNew); // валидация инпутов попапа "Добавить карточку"
-const popupWithImage = new PopupWithImage('.popup__zoom-card'); // попап с картинкой
 
-const userInfo = new UserInfo({
-  userName: profileName,
-  userDescription: profileJob,
-});
-
-
-// Профиль
 const handleProfileFormSubmit = (formValues) => {
   userInfo.setUserInfo(formValues);
 }
 
-const renderProfilePopup = () => {
-  const profileElement = userInfo.getUserInfo();
-
-  nameInput.value = profileElement.name; // name="name" из файла html
-  jobInput.value = profileElement.about; // name="about" из файла html
-
-  profileValidator.clearError();
-  popupButtonEdit.classList.remove('popup__button_disabled'); // включить кнопку "Сохранить" при первом открытии
-  const profilePopup = new PopupWithForm('.popup__edit-profile', handleProfileFormSubmit); // попап с формой "Редактировать профиль"
-  profilePopup.open();
-}
-
-
-//  Карточки
-const handleCardClick = (evt) => {
-  popupWithImage.openPopupImage(evt);
-}
-
-
-// Загрузка карточек "по умолчанию" (отрисовка элементов на странице)
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '#card-template', handleCardClick).generateCard();
-    cardsList.addItem(card);
-  }
-}, '.card-container');
-
-
-// Добавить новую карточку
 const addNewCard = () => {
 
   const inputValues = {
@@ -122,19 +82,62 @@ const addNewCard = () => {
   cardContainer.prepend(card);
 }
 
+const profileValidator = new FormValidator(popupParameters, popupFormEditProfile); // валидация инпутов попапа "Редактировать профиль"
+const cardValidator = new FormValidator(popupParameters, popupFormCardNew); // валидация инпутов попапа "Добавить карточку"
+const popupWithImage = new PopupWithImage('.popup__zoom-card'); // попап с картинкой
+const profilePopup = new PopupWithForm('.popup__edit-profile', handleProfileFormSubmit); // попап с формой "Редактировать профиль"
+const cardPopup = new PopupWithForm('.popup__add-card', addNewCard); // попап с формой "Добавить карточку"
+
+const userInfo = new UserInfo({
+  userName: profileName,
+  userDescription: profileJob,
+});
+
+
+// Рендерить данные профиля
+const renderProfilePopup = () => {
+  const profileElement = userInfo.getUserInfo();
+
+  nameInput.value = profileElement.name; // name="name" из файла html
+  jobInput.value = profileElement.about; // name="about" из файла html
+
+  profileValidator.clearError();
+  popupButtonEdit.classList.remove('popup__button_disabled'); // включить кнопку "Сохранить" при первом открытии
+
+  profilePopup.open();
+}
+
+
+
+//  Карточки
+const handleCardClick = (evt) => {
+  popupWithImage.openPopupImage(evt);
+}
+
+// Загрузка карточек "по умолчанию" (отрисовка элементов на странице)
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#card-template', handleCardClick).generateCard();
+    cardsList.addItem(card);
+  }
+}, '.card-container');
+
+
+// Рендерить новую карточку
 const renderCardPopup = () => {
 
   popupInputNewCard.value = '';
   popupInputNewCardLink.value = '';
   cardValidator.clearError();
-  const cardPopup = new PopupWithForm('.popup__add-card', addNewCard); // попап с формой "Добавить карточку"
+
   cardPopup.open();
 }
 
 
 // СЛУШАТЕЛИ
-profileButtonEdit.addEventListener('click', renderProfilePopup);
-profileButtonAdd.addEventListener('click', renderCardPopup);
+profileButtonEdit.addEventListener('click', renderProfilePopup); // Рендерить данные профиля
+profileButtonAdd.addEventListener('click', renderCardPopup); // Рендерить новую карточку
 
 // ВЫЗОВ ФУНКЦИЙ
 cardsList.renderItems(); // Загрузка карточек
