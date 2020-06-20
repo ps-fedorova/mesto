@@ -84,6 +84,7 @@ const cardsList = new Section({
 
 // Рендерить новую карточку
 const renderCardPopup = () => {
+  popupButtonAddCard.disabled = true;
   popupButtonAddCard.classList.add('popup__button_disabled'); // выключить кнопку "Сохранить"
   popupInputNewCard.value = '';
   popupInputNewCardLink.value = '';
