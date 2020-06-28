@@ -1,5 +1,6 @@
 import './index.css';
 
+import API from "../components/API.js";
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -9,7 +10,7 @@ import UserInfo from '../components/UserInfo.js';
 
 import {
   cardContainer,
-  initialCards,
+  //initialCards,
   jobInput,
   nameInput,
   popupButtonAddCard,
@@ -22,7 +23,10 @@ import {
   profileButtonAdd,
   profileButtonEdit,
   profileJob,
-  profileName
+  profileName,
+  apiUrl,
+  token
+
 } from '../utils/constants.js'
 
 // ФУНКЦИИ
@@ -40,6 +44,10 @@ const addNewCard = () => {
   const card = new Card(inputValues, '#card-template', handleCardClick).generateCard();
   cardContainer.prepend(card);
 }
+
+const api = new API(apiUrl, token);
+
+//console.log(api);
 
 const profileValidator = new FormValidator(popupParameters, popupFormEditProfile); // валидация инпутов попапа "Редактировать профиль"
 const cardValidator = new FormValidator(popupParameters, popupFormCardNew); // валидация инпутов попапа "Добавить карточку"
@@ -66,21 +74,24 @@ const renderProfilePopup = () => {
   profilePopup.open();
 }
 
-
 //  Карточки
 const handleCardClick = (evt) => {
   popupWithImage.openPopupImage(evt);
 }
 
 // Загрузка карточек "по умолчанию" (отрисовка элементов на странице)
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '#card-template', handleCardClick).generateCard();
-    cardsList.addItem(card);
-  }
-}, '.card-container');
+const card = item => new Card(item, '#card-template', handleCardClick).generateCard();
 
+Promise.all([api.getInitialCards()])
+ .then(([initialCards]) => {
+  let cardList = new Section({
+  items: initialCards,
+  renderer: item => cardList.appendItem(card(item))
+ }, '.card-container');
+   cardList.renderItems();
+ })
+
+  .catch(err => console.log(err));
 
 // Рендерить новую карточку
 const renderCardPopup = () => {
@@ -93,13 +104,12 @@ const renderCardPopup = () => {
   cardPopup.open();
 }
 
-
 // СЛУШАТЕЛИ
 profileButtonEdit.addEventListener('click', renderProfilePopup); // Рендерить данные профиля
 profileButtonAdd.addEventListener('click', renderCardPopup); // Рендерить новую карточку
 
 // ВЫЗОВ ФУНКЦИЙ
-cardsList.renderItems(); // Загрузка карточек
+//cardsList.renderItems(); // Загрузка карточек
 profileValidator.enableValidation(); // Валидация полей ввода попапа "Редактировать профиль"
 cardValidator.enableValidation(); // Валидация полей ввода попапа "Добавить карточку"
 

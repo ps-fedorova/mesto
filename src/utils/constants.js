@@ -1,6 +1,11 @@
 // ОБЪЯВЛЕНИЕ ПЕРЕМЕННЫХ
 
-export const initialCards = [{
+
+export const apiUrl = 'https://mesto.nomoreparties.co/v1/cohort-12';
+export const token = '2ecad59e-1d15-4621-aac6-769c45c3d932';
+
+
+/*export let initialCards = [{
   name: 'Архыз',
   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
 },
@@ -24,7 +29,7 @@ export const initialCards = [{
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
+];*/
 
 // Профиль
 const profile = document.querySelector('.profile');
