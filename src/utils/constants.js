@@ -35,6 +35,7 @@ export const token = '2ecad59e-1d15-4621-aac6-769c45c3d932';
 const profile = document.querySelector('.profile');
 export const profileName = profile.querySelector('.profile__user-info-name'); // элементы, куда должны быть вставлены значения полей
 export const profileJob = profile.querySelector('.profile__user-info-about'); //элементы, куда должны быть вставлены значения полей
+export const profileAvatar = profile.querySelector('.profile__avatar-picture'); //элементы, куда должны быть вставлены значения полей
 export const profileButtonAdd = profile.querySelector('.profile__button-add'); // кнопка "Добавить карточку"
 export const profileButtonEdit = profile.querySelector('.profile__button-edit'); // кнопка "Редактировать профиль"
 

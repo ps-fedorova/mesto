@@ -1,6 +1,6 @@
 @import url(./__position/profile__position.css);
 @import url(./__avatar/profile__avatar.css);
-@import url(./__avatar-jacques-yves-cousteau/profile__avatar-jacques-yves-cousteau.css);
+@import url(__avatar-picture/profile__avatar-picture.css);
 @import url(./__user-info/profile__user-info.css);
 @import url(./__name-edit-position/profile__name-edit-position.css);
 @import url(./__user-info-name/profile__user-info-name.css);

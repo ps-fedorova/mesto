@@ -24,6 +24,7 @@ import {
   profileButtonEdit,
   profileJob,
   profileName,
+  profileAvatar,
   apiUrl,
   token
 
@@ -58,6 +59,7 @@ const cardPopup = new PopupWithForm('.popup__add-card', addNewCard); // попа
 const userInfo = new UserInfo({
   userName: profileName,
   userDescription: profileJob,
+  userAvatar: profileAvatar
 });
 
 
@@ -83,15 +85,25 @@ const handleCardClick = (evt) => {
 const card = item => new Card(item, '#card-template', handleCardClick).generateCard();
 
 Promise.all([api.getInitialCards()])
- .then(([initialCards]) => {
-  let cardList = new Section({
-  items: initialCards,
-  renderer: item => cardList.appendItem(card(item))
- }, '.card-container');
-   cardList.renderItems();
- })
-
+  .then(([initialCards]) => {
+      let cardList = new Section({
+      items: initialCards,
+      renderer: item => cardList.appendItem(card(item))
+    }, '.card-container');
+    cardList.renderItems();
+  })
   .catch(err => console.log(err));
+
+
+// Загрузка информации профиля "по умолчанию"
+Promise.all([api.getUserInitialInfo()])
+  .then(([{name, about, avatar, _id}]) => {
+    userInfo.setUserInfo({name, about});
+    userInfo.setUserAvatar({avatar});
+    userInfo.setUserId(_id);
+  })
+  .catch(err => console.log(err));
+
 
 // Рендерить новую карточку
 const renderCardPopup = () => {

@@ -14,7 +14,13 @@ export default class API {
         return Promise.reject(` Все пропало. Ошибка: ${res.status}`);
       })
   }
-
+  getUserInitialInfo() {
+    return this._fetchData('/users/me', {
+      headers: {
+        authorization: this._token
+      }
+    })
+  }
 
   getInitialCards() {
     return this._fetchData('/cards', {
@@ -23,5 +29,6 @@ export default class API {
       }
     })
   }
+
 
 }
