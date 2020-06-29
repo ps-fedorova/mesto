@@ -29,23 +29,26 @@ import {
 } from '../utils/constants.js'
 
 // ФУНКЦИИ
-const handleProfileFormSubmit = (formValues) => {
-  userInfo.setUserInfo(formValues);
+const handleProfileFormSubmit = (inputProfileValues) => {
+  userInfo.setUserInfo(inputProfileValues);
 
-  api.editUserInfo(formValues)
+  api.editUserInfo(inputProfileValues)
     .catch(err => console.log(err))
 }
 
 
 const addNewCard = () => {
 
-  const inputValues = {
+  const inputCardValues = {
     name: popupInputNewCard.value,
     link: popupInputNewCardLink.value
   };
 
-  const card = new Card(inputValues, '#card-template', handleCardClick).generateCard();
+  const card = new Card(inputCardValues, '#card-template', handleCardClick).generateCard();
   cardContainer.prepend(card);
+
+api.postCard(inputCardValues)
+    .catch(err => console.log(err))
 }
 
 const api = new API(apiUrl, token);
@@ -93,7 +96,7 @@ const handleCardClick = (evt) => {
 }
 
 // Загрузить карточки "по умолчанию" (отрисовка элементов на странице)
-const card = item => new Card(item, '#card-template', handleCardClick).generateCard();
+const card = (item) => new Card(item, '#card-template', handleCardClick).generateCard();
 
 Promise.all([api.getInitialCards()])
   .then(([initialCards]) => {

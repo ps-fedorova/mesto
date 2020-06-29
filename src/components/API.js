@@ -43,7 +43,6 @@ export default class API {
     })
   }
 
-
   // загрузить карточки с сервера
   getInitialCards() {
     return this._fetch('/cards', {
@@ -53,6 +52,22 @@ export default class API {
       }
     })
   }
+
+
+  // запостить карточку
+  postCard(inputValues) {
+    return this._fetch('/cards', {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(inputValues)
+    })
+  }
+
+
+
 
 
 }
