@@ -4,7 +4,7 @@ export default class API {
     this._token = token;
   }
 
-  _fetchData(url, options) {
+  _fetch(url, options) {
     return fetch(this._apiUrl + url, options)
       .then(res => {
         if (res.ok) {
@@ -13,18 +13,42 @@ export default class API {
 
         return Promise.reject(` Все пропало. Ошибка: ${res.status}`);
       })
+      .catch(err => console.log(err));
   }
+
+
+// загрузить информацию о пользователе с сервера
   getUserInitialInfo() {
-    return this._fetchData('/users/me', {
+    return this._fetch('/users/me', {
       headers: {
+        method: 'GET',
         authorization: this._token
       }
     })
   }
 
-  getInitialCards() {
-    return this._fetchData('/cards', {
+  // редактировать профиль
+  editUserInfo(profile) {
+    return this._fetch('/users/me', {
+      method: 'PATCH', // Метод PATCH обычно используют для обновления сущностей,
+                       // уже существующих на сервере.
       headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: profile.name,
+        about: profile.about
+      })
+    })
+  }
+
+
+  // загрузить карточки с сервера
+  getInitialCards() {
+    return this._fetch('/cards', {
+      headers: {
+        method: 'GET',
         authorization: this._token
       }
     })

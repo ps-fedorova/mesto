@@ -9,8 +9,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
 import {
+  apiUrl,
   cardContainer,
-  //initialCards,
   jobInput,
   nameInput,
   popupButtonAddCard,
@@ -20,20 +20,22 @@ import {
   popupInputNewCard,
   popupInputNewCardLink,
   popupParameters,
+  profileAvatar,
   profileButtonAdd,
   profileButtonEdit,
   profileJob,
   profileName,
-  profileAvatar,
-  apiUrl,
   token
-
 } from '../utils/constants.js'
 
 // ФУНКЦИИ
 const handleProfileFormSubmit = (formValues) => {
   userInfo.setUserInfo(formValues);
+
+  api.editUserInfo(formValues)
+    .catch(err => console.log(err))
 }
+
 
 const addNewCard = () => {
 
@@ -62,6 +64,14 @@ const userInfo = new UserInfo({
   userAvatar: profileAvatar
 });
 
+// Загрузить информацию профиля "по умолчанию"
+Promise.all([api.getUserInitialInfo()])
+  .then(([{name, about, avatar, _id}]) => {
+    userInfo.setUserInfo({name, about});
+    userInfo.setUserAvatar({avatar});
+    userInfo.setUserId(_id);
+  })
+
 
 // Рендерить данные профиля
 const renderProfilePopup = () => {
@@ -76,33 +86,23 @@ const renderProfilePopup = () => {
   profilePopup.open();
 }
 
+
 //  Карточки
 const handleCardClick = (evt) => {
   popupWithImage.openPopupImage(evt);
 }
 
-// Загрузка карточек "по умолчанию" (отрисовка элементов на странице)
+// Загрузить карточки "по умолчанию" (отрисовка элементов на странице)
 const card = item => new Card(item, '#card-template', handleCardClick).generateCard();
 
 Promise.all([api.getInitialCards()])
   .then(([initialCards]) => {
-      let cardList = new Section({
+    let cardList = new Section({
       items: initialCards,
       renderer: item => cardList.appendItem(card(item))
     }, '.card-container');
     cardList.renderItems();
   })
-  .catch(err => console.log(err));
-
-
-// Загрузка информации профиля "по умолчанию"
-Promise.all([api.getUserInitialInfo()])
-  .then(([{name, about, avatar, _id}]) => {
-    userInfo.setUserInfo({name, about});
-    userInfo.setUserAvatar({avatar});
-    userInfo.setUserId(_id);
-  })
-  .catch(err => console.log(err));
 
 
 // Рендерить новую карточку
