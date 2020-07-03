@@ -24,6 +24,7 @@
 *	CSS
 *	JavaScript
 * Webpack
+* API
 
 
 [Посмотреть работу](https://ps-fedorova.github.io/mesto/)
