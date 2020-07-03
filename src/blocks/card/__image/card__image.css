@@ -1,6 +1,7 @@
 .card__image {
-    height: 280px;
-    width: 100%;
-    object-fit: cover;
-    color: #000;
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  color: #000;
+  cursor: pointer;
 }

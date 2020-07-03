@@ -1,14 +1,18 @@
 @import url(./__image/card__image.css);
 @import url(./__button-delete/card__button-delete.css);
+@import url(./__button-delete/_invisible/card__button-delete_invisible.css);
 @import url(./__description/card__description.css);
 @import url(./__name/card__name.css);
 @import url(./__button-like/card__button-like.css);
 @import url(./__button-like/_solid/card__button-like_solid.css);
+@import url(./__count-likes/card__count-likes.css);
+@import url(./__likes-container/card__likes-container.css);
+
 .card {
-    display: flex;
-    flex-wrap: wrap;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }

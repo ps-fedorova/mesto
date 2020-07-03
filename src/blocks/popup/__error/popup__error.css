@@ -2,7 +2,7 @@
     position: absolute;
     top: calc(100% + 6px);
     font-size: 12px;
-    line-height: 15px;
+    line-height: 1;
     color: red;
     display: none;
 }
@@ -10,6 +10,5 @@
 @media screen and (max-width: 419px) {
   .popup__error {
     top: calc(100% + 1px);
-    line-height: 1.2;
   }
 }

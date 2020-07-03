@@ -17,18 +17,19 @@
 <main class="content">
   <section class="profile">
     <div class="profile__position">
-      <div class="profile__avatar">
-        <img alt="Аватар Жак-Ив Кусто" class="profile__avatar-jacques-yves-cousteau"
-             src="./images/profile-avatar-jacques-yves-cousteau.jpg">
-      </div>
+
+      <button class="button profile__avatar-edit" type="button">
+        <img alt="Аватар" class="profile__avatar-image">
+      </button>
+
       <div class="profile__user-info">
         <div class="profile__name-edit-position">
-          <h1 class="profile__user-info-name">Жак-Ив Кусто</h1>
+          <h1 class="profile__user-info-name"></h1>
           <button class="button profile__button-edit" type="button">
             <img alt="Редактировать профиль" class="profile__button-edit-vector" src="./images/edit.svg">
           </button>
         </div>
-        <p class="profile__user-info-about">Исследователь океана</p>
+        <p class="profile__user-info-about"></p>
       </div>
     </div>
     <button class="button profile__button-add" type="button"><img alt="Добавить карточку"
@@ -41,12 +42,15 @@
     <template id="card-template">
       <li class="card">
         <img class="card__image">
-        <button class="button card__button-delete" type="submit">
+        <button class="button card__button-delete card__button-delete_invisible" type="submit">
           <img alt="Удалить" class="card__button-delete-vector" src="./images/trash.svg">
         </button>
         <div class="card__description">
           <h2 class="card__name"></h2>
-          <button class="button card__button-like" type="submit"></button>
+          <div class="card__likes-container">
+            <button class="button card__button-like" type="submit"></button>
+            <p class="card__count-likes"></p>
+          </div>
         </div>
       </li>
     </template>
@@ -56,6 +60,26 @@
 <footer class="footer">
   <p class="footer__сopyright">&copy; 2020 Mesto Russia</p>
 </footer>
+
+<!--style= "display: flex; opacity: 1; visibility: visible;"-->
+
+<!--Обновить аватар-->
+<div class="popup popup__closed popup__edit-avatar">
+  <div class="popup__container">
+    <img alt="Закрыть" class="button popup__close" src="./images/close.svg">
+    <h2 class="popup__title">Обновить аватар</h2>
+    <form class="popup__form popup__form-avatar" name="new-card" novalidate>
+      <label class="popup__form-field">
+        <input class="popup__input popup__input_avatar-link" id="link-avatar" name="avatar"
+               placeholder="Ссылка на картинку"
+               required type="url">
+        <span class="popup__error" id="link-avatar-error"></span>
+      </label>
+      <button class="button popup__button" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+
 
 <!--Редактировать профиль-->
 <div class="popup popup__closed popup__edit-profile">
@@ -86,16 +110,26 @@
     <h2 class="popup__title">Новое место</h2>
     <form class="popup__form popup__form-card-new" name="new-card" novalidate>
       <label class="popup__form-field">
-        <input class="popup__input popup__input_new-card" id="name-card" maxlength="30" minlength="1" name="nameCard"
+        <input class="popup__input popup__input_new-card" id="name-card" maxlength="30" minlength="2" name="title"
                placeholder="Название" required type="text">
         <span class="popup__error" id="name-card-error"></span>
       </label>
       <label class="popup__form-field">
-        <input class="popup__input popup__input_new-card-link" id="link" name="link" placeholder="Ссылка на картинку"
+        <input class="popup__input popup__input_new-card-link" id="link" name="src" placeholder="Ссылка на картинку"
                required type="url">
         <span class="popup__error" id="link-error"></span>
       </label>
       <button class="button popup__button" type="submit">Создать</button>
+    </form>
+  </div>
+</div>
+
+<!--Попап "Вы уверены?"-->
+<div class="popup popup__closed popup__are-you-sure">
+  <div class="popup__container">
+    <img alt="Закрыть" class="button popup__close" src="./images/close.svg">
+    <h2 class="popup__title">Вы уверены?</h2>
+    <button class="button popup__button" type="submit">Да</button>
     </form>
   </div>
 </div>

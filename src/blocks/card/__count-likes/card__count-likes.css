@@ -1,0 +1,8 @@
+.card__count-likes {
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  margin: 0;
+  padding-top: 3px;
+  color: #000;
+}
