@@ -27,22 +27,40 @@ export default class PopupWithForm extends Popup {
     }
   }
 
-  _generateHandleSubmit() {
-    const that = this; //(https://habr.com/ru/post/421959/) - для себя оставила, чтобы не потерять
-    const thisText = this._popupButton.textContent; // без этого теряется ссылка на контекст
+  // _generateHandleSubmit() {
+  //   const that = this; //(https://habr.com/ru/post/421959/) - для себя оставила, чтобы не потерять
+  //   const thisText = this._popupButton.textContent; // без этого теряется ссылка на контекст
+  //
+  //   return function (evt) {
+  //     evt.preventDefault();
+  //     that._renderLoading(true, thisText);
+  //     that._handleFormSubmit(that._getInputValues())
+  //       .then(() => {
+  //         that.close();
+  //         evt.target.reset();
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //       .finally(() => that._renderLoading(false, thisText))
+  //   }
+  // }
 
-    return function (evt) {
+  _generateHandleSubmit() {
+    const thisText = this._popupButton.textContent;
+
+    return  (evt) => {
       evt.preventDefault();
-      that._renderLoading(true, thisText);
-      that._handleFormSubmit(that._getInputValues())
+      this._renderLoading(true, thisText);
+      this._handleFormSubmit(this._getInputValues())
         .then(() => {
-          that.close();
+          this.close();
           evt.target.reset();
         })
         .catch((err) => {
           console.log(err)
         })
-        .finally(() => that._renderLoading(false, thisText))
+        .finally(() => this._renderLoading(false, thisText))
     }
   }
 
