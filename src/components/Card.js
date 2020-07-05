@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({link, name, _id, likes}, cardSelector, api, {cardUserId, initialUserId, renderConfirmPopup, handleCardClick}) {
+  constructor({link, name, _id, likes}, cardSelector, api, {cardUserId, initialUserId, renderConfirmPopup, renderImgPopup}) {
     this._link = link;
     this._name = name;
     this._cardId = _id;
@@ -9,7 +9,8 @@ export default class Card {
     this._cardUserId = cardUserId;
     this._initialUserId = initialUserId;
     this._renderConfirmPopup = renderConfirmPopup;
-    this._handleCardClick = handleCardClick;
+    this._renderImgPopup = renderImgPopup;
+
 
     this._handleCardClick = this._handleCardClick.bind(this);
     this._handleLikeButton = this._handleLikeButton.bind(this);
@@ -33,6 +34,13 @@ export default class Card {
     this._image = this._card.querySelector('.card__image');
     this._imgName = this._card.querySelector('.card__name');
     this._countLikes = this._card.querySelector('.card__count-likes');
+  }
+
+  _handleCardClick() {
+    this._renderImgPopup({
+      link: this._link,
+      name: this._name,
+    });
   }
 
   // Поставить лайк

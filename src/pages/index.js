@@ -114,7 +114,7 @@ const card = (cardItem) => new Card(cardItem, '#card-template', api, {
   cardUserId: cardItem.owner._id,
   initialUserId: initialUserId,
   renderConfirmPopup: renderConfirmPopup,
-  handleCardClick: renderImgPopup,
+  renderImgPopup: renderImgPopup,
 });
 
 const renderInitialCards = (cardList) => {
@@ -165,8 +165,8 @@ const renderCardPopup = () => {
 
 /*-----------------ПОПАП с картинкой-----------------*/
 const imgPopup = new PopupWithImage(popupZoomCard, popupImage, popupCardName);
-const renderImgPopup = (evt) => {
-  imgPopup.open(evt);
+const renderImgPopup = ({link, name}) => {
+  imgPopup.open({link, name});
 };
 
 /*-----------------ПОПАП "Точно удалять карточку?"-----------------*/
