@@ -29,7 +29,7 @@ export default class PopupWithConfirm extends Popup {
     this._popupSelector.classList.add('popup_opened');
   }
 
-  close(callback) {
+  close() {
     this._popupButtonConfirm.removeEventListener('click', this._handleConfirmButton);
     super.close();
   }
