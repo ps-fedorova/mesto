@@ -43,7 +43,9 @@ export default class Card {
           this._countLikes.textContent = item.likes.length;
           this._buttonLike.classList.toggle('card__button-like_solid'); //+
         })
-        .catch(err => console.error(err));
+        .catch((err) => {
+          console.log(err)
+        });
     } else {
       this._api.deleteLike(this._cardId)
         .then(item => {
